@@ -11,7 +11,7 @@ const page = () => {
           <p className='text-stone-400 mt-8 w-4/5 text-justify leading-7'>Our food ordering app delivers your meals with lightning speed! From the moment you place your order, we ensure quick processing and efficient delivery. Most orders arrive within 30 minutes, hot and fresh. We prioritize speed so you can enjoy your favorite dishes without the long wait.</p>
         </div>
         <div className='w-1/2  flex justify-center'>
-          <div className='w-96 h-full p-2 bg-gradient-to-t from-amber-400 to-amber-600 rounded-full'>
+          <div className='w-96 h-fit p-2 bg-gradient-to-t from-amber-400 to-amber-600 rounded-full'>
             <Image
             className='rounded-full object-cover'
             src={"/images/chicken-curry.jpg"}

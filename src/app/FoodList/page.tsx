@@ -108,7 +108,7 @@ export default async function FoodList(){
 
 
 
-//     <div className="card  w-80 h-fit bg-stone-950 rounded-xl ">
+    // <div className="card  w-80 h-fit bg-stone-950 rounded-xl ">
     //         <Image 
     //             src="/images/beef-tacos.jpg"
     //             alt=""

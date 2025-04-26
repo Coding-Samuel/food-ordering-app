@@ -64,20 +64,19 @@ const NavBar:React.FC = () => {
         {/* Mobile Menu Icon */}
         <div className="md:hidden text-amber-400 text-2xl" onClick={navLinkSetter}>
           <FaBars />
+          {/* Mobile Menu Dropdown */}
+        {navLinks && (
+            <div className="absolute top-18 right-0  md:hidden bg-black p-6 z-30">
+              <div className="flex flex-col text-amber-400 gap-4">
+                <Link className="text-lg" href="/">Home</Link>
+                <Link className="text-lg" href="/Menu">Menu</Link>
+                <Link className="text-lg" href="/Sign-up">Sign Up</Link>
+                <Link className="text-lg" href="/Login">Login</Link>
+              </div>
+            </div>
+          )}
         </div>
       </div>
-
-      {/* Mobile Menu Dropdown */}
-      {navLinks && (
-        <div className="absolute top-18 right-0  md:hidden bg-black p-6">
-          <div className="flex flex-col text-amber-400 gap-4">
-            <Link className="text-lg" href="/">Home</Link>
-            <Link className="text-lg" href="/Menu">Menu</Link>
-            <Link className="text-lg" href="/Sign-up">Sign Up</Link>
-            <Link className="text-lg" href="/Login">Login</Link>
-          </div>
-        </div>
-      )}
     </>
   );
 };
