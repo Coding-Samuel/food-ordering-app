@@ -1,0 +1,33 @@
+/my-food-app
+├── app/
+│   ├── layout.tsx               # Root layout (with <html> and <body>)
+│   ├── page.tsx                 # Homepage
+│   ├── menu/                    # Food list page (e.g., /menu)
+│   │   ├── page.tsx
+│   ├── order/                   # Order form page (e.g., /order)
+│   │   ├── page.tsx
+│   └── success/                 # Order confirmation (e.g., /success)
+│       ├── page.tsx
+│
+├── components/                  # Reusable components
+│   ├── Navbar.tsx
+│   ├── Footer.tsx
+│   ├── FoodCard.tsx
+│   ├── OrderForm.tsx
+│   └── Button.tsx
+│
+├── lib/                         # Helpers, utils, and API functions
+│   ├── api.ts                   # Fetch from backend API
+│   └── constants.ts             # Constants (like API base URL)
+│
+├── public/                      # Static assets (images, icons)
+│   └── logo.png
+│
+├──├── globals.css
+│
+├── middleware.ts               # (Optional) For auth, redirects, etc.
+├── tailwind.config.ts
+├── postcss.config.js
+├── tsconfig.json
+├── package.json
+└── README.md
