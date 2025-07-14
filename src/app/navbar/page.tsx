@@ -1,22 +1,38 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useCallback, useState,useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaShoppingCart, FaBars } from 'react-icons/fa';
+import CartModal from '../components/Cart/CartModal';
 
 const NavBar:React.FC = () => {
+  const [isScrolled, setScrolled] =  useState(false);
+
+  useEffect(()=>{
+    const handleScroll = ()=> (
+      setScrolled(window.scrollY > 10)
+    );
+    window.addEventListener("scroll", handleScroll);
+
+    return ()=> (window.removeEventListener("scroll", handleScroll))
+  }, [])
+  const dialog = useRef();
   const [navLinks, setNavLinks] = useState<boolean>(false);
 
-  function navLinkSetter():void {
+  const navLinkSetter = useCallback(()=>{
     setNavLinks(prev => !prev);
-  }
+  },[])
 
+  const handleOpenModal = ()=>{
+    dialog.current?.open();
+  }
   return (
     <>
+      <CartModal ref={dialog}/>
       {/* Main Nav Bar */}
-      <div className="flex justify-between items-center px-6 py-3 shadow-md">
+      <div className={`${isScrolled && "navbar-bg shadow-md"} z-10 flex justify-between px-6 py-2 transition w-full fixed top-0`}>
         {/* Logo */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center  gap-8">
           <Image
             className="rounded-3xl"
             src="/logo.jpg"
@@ -41,9 +57,8 @@ const NavBar:React.FC = () => {
           >
             Menu
           </Link>
-          <div className="flex items-center hover:bg-amber-400 py-1 px-3 hover:text-white transition rounded-xl">
-            <FaShoppingCart className="text-xl mr-1" />
-            <p>(0)</p>
+          <div className="flex items-center hover:bg-amber-400 py-2 px-3 hover:text-white transition rounded-xl" onClick={handleOpenModal}>
+            <FaShoppingCart className="text-xl mr-1"/>
           </div>
           <div className="text-sm">
             <Link
@@ -62,19 +77,22 @@ const NavBar:React.FC = () => {
         </div>
 
         {/* Mobile Menu Icon */}
-        <div className="md:hidden text-amber-400 text-2xl" onClick={navLinkSetter}>
-          <FaBars />
+        <div className="md:hidden  text-amber-400 text-2xl" onClick={navLinkSetter}>
+          <FaBars className={`${navLinks && "bg-amber-400 text-white "} text-4xl p-2 hover:bg-amber-400 hover:text-white transition`}/>
           {/* Mobile Menu Dropdown */}
-        {navLinks && (
-            <div className="absolute top-18 right-0  md:hidden bg-black p-6 z-30">
-              <div className="flex flex-col text-amber-400 gap-4">
-                <Link className="text-lg" href="/">Home</Link>
-                <Link className="text-lg" href="/Menu">Menu</Link>
-                <Link className="text-lg" href="/Sign-up">Sign Up</Link>
-                <Link className="text-lg" href="/Login">Login</Link>
+        
+            <div className={`${navLinks && "bg-red-300"} `}>
+            <div className={`${navLinks? "translate-x-0":"translate-x-24"} absolute top-20 right-0  z-30 w-24 transition bg-black`}>
+              <div className="flex flex-col  text-amber-400 gap-4 w-full">
+                <Link className="text-lg hover:text-white transition hover:bg-amber-400 w-full px-3 py-1" href="/">Home</Link>
+                <Link className="text-lg hover:text-white transition hover:bg-amber-400 w-full px-3 py-1" href="/Menu">Menu</Link>
+                <Link className="text-lg hover:text-white transition hover:bg-amber-400 w-full px-3 py-1" href="/Sign-up">Sign Up</Link>
+                <Link className="text-lg hover:text-white transition hover:bg-amber-400 w-full px-3 py-1" href="/Login">Login</Link>
+                <p onClick={handleOpenModal} className="text-lg hover:text-white transition hover:bg-amber-400 px-3 py-1 ">Cart</p>
               </div>
             </div>
-          )}
+            </div>
+            
         </div>
       </div>
     </>

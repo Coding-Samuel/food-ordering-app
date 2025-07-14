@@ -1,9 +1,15 @@
+"use client";
 import React from 'react'
 
-const Button = () => {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement>{
+    handleClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    children?: React.ReactNode;
+}
+
+const Button = ({handleClick, children, ...props}:Props) => {
   return (
-    <div>Button</div>
+    <button onClick={handleClick} {...props}>{children}</button>
   )
 }
 
-export default Button
+export default Button;

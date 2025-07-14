@@ -39,8 +39,25 @@ body {
       transform: translateY(0);
     }
   }
+  
 
   .animate-fade-up {
     animation: fade-down .5s ease-out forwards;
   }
+}
+.icon-bg{
+  background-image:linear-gradient(rgb(66, 50, 3) 50%,rgb(24, 18, 1)) ;
+}
+.navbar-bg{
+  background-image:linear-gradient(to right, rgb(15, 11, 0) 50%,rgb(26, 19, 1));
+  /* background: red; */
+  transition: all;
+  transition-duration:300ms;
+  transition-timing-function:ease-in-out ;
+}
+.icon-bg:hover{
+  background-image:linear-gradient(rgba(66, 50, 3, 0.918) 50%,rgba(24, 18, 1, 0.923)) ;
+}
+dialog::backdrop {
+  @apply bg-black/50 backdrop-blur-sm;
 }
